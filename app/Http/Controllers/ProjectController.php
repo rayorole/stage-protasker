@@ -10,42 +10,20 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
 
-class ProjectController extends Controller{
+class ProjectController extends Controller
+{
     public function index(Request $request): View
     {
-        return view('projects.index', [
-            
-        ]);
+        return view('projects.index', []);
     }
 
-    public function create(ProfileUpdateRequest $request): RedirectResponse
+    public function create()
     {
-        $request->user()->fill($request->validated());
-
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
-
-        $request->user()->save();
-
-        return Redirect::route('projects.index')->with('status', 'profile-updated');
+        return view('projects.create');
     }
 
-    public function destroy(Request $request): RedirectResponse
+    public function showDashboard(Request $request, $project): View
     {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current_password'],
-        ]);
-
-        $user = $request->user();
-
-        Auth::logout();
-
-        $user->delete();
-
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return Redirect::to('/');
+        return view('projects.dashboard.index', []);
     }
 }
