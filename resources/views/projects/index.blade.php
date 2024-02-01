@@ -1,7 +1,4 @@
 <x-app-layout>
-<<<<<<< HEAD
-
-=======
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             Projects
@@ -13,5 +10,4 @@
 
         </div>
     </div>
->>>>>>> c37c91efa9b6dff9dc3c8102c32054d39f5f1822
 </x-app-layout>
