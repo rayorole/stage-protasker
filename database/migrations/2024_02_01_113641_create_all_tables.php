@@ -14,9 +14,12 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('profile_image');
+            $table->string('banner');
             $table->date('deadline');
             $table->enum('type', ['design', 'marketing', 'development', 'testing', 'done']);
             $table->enum('status', ['done', 'in_progress', 'todo']);
+            $table->text('description');
             $table->timestamps();
         });
 
