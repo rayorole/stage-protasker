@@ -11,6 +11,16 @@ class Project extends Model
 
     protected $table = 'projects';
 
+    protected $fillable = [
+        'id',
+        'name',
+        'deadline',
+        'description',
+        'type',
+        'status',
+        'user_id',
+    ];
+
 
     public function user()
     {

@@ -1,26 +1,17 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Dashboard
-        </h2>
+        <div class="flex display-flex justify-between">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                Dashboard
+            </h2>
+            <a href="{{ route('projects.create') }}"
+                class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded">
+                Create new project
+            </a>
+        </div>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex justify-between items-center">
-                <div class="p-6 text-gray-900">
-                    Your projects
-                </div>
-
-                <div class="p-6">
-                    <a href="{{ route('projects.create') }}"
-                        class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded">
-                        Create new project
-                    </a>
-                </div>
-            </div>
-        </div>
-
+    <div>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="flex flex-col">
@@ -56,17 +47,17 @@
                                                 </svg>
                                             </div>
                                             <div class="p-4 md:p-6">
-                                                <span
-                                                    class="block mb-1 text-xs font-semibold uppercase text-blue-600 dark:text-blue-500">
-                                                    Atlassian API
-                                                </span>
-                                                <h3
-                                                    class="text-xl font-semibold text-gray-800 dark:text-gray-300 dark:hover:text-white">
-                                                    Atlassian
-                                                </h3>
+                                                <div class="flex items-center justify-between">
+                                                    <h3
+                                                        class="text-xl font-semibold text-gray-800 dark:text-gray-300 dark:hover:text-white ">
+                                                        Project name
+                                                    </h3>
+                                                    <p class="text-sm text-gray-600 tracking-tight">
+                                                        Deadline date
+                                                    </p>
+                                                </div>
                                                 <p class="mt-3 text-gray-500">
-                                                    A software that develops products for software developers and
-                                                    developments.
+                                                    Project description
                                                 </p>
                                             </div>
                                             <div
@@ -75,17 +66,18 @@
                                                     href="{{ route('projects.dashboard.index', [
                                                         'project' => 1,
                                                     ]) }}">
-                                                    View sample
+                                                    View Project
                                                 </a>
                                                 <a class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-ee-xl bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                                                     href="#">
-                                                    View API
+                                                    Edit project
                                                 </a>
                                             </div>
                                         </div>
                                         <!-- End Card -->
 
                                         <!-- Card -->
+
                                         <div
                                             class="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7]">
                                             <div
@@ -114,30 +106,34 @@
                                                 </svg>
                                             </div>
                                             <div class="p-4 md:p-6">
-                                                <span
-                                                    class="block mb-1 text-xs font-semibold uppercase text-rose-600 dark:text-rose-500">
-                                                    Asana API
-                                                </span>
-                                                <h3
-                                                    class="text-xl font-semibold text-gray-800 dark:text-gray-300 dark:hover:text-white">
-                                                    Asana
-                                                </h3>
+                                                <div class="flex items-center justify-between">
+                                                    <h3
+                                                        class="text-xl font-semibold text-gray-800 dark:text-gray-300 dark:hover:text-white">
+                                                        Project name
+                                                    </h3>
+                                                    <p class="text-sm text-gray-600 tracking-tight">
+                                                        Deadline date
+                                                    </p>
+                                                </div>
                                                 <p class="mt-3 text-gray-500">
-                                                    Track tasks and projects, use agile boards, measure progress.
+                                                    Project description
                                                 </p>
                                             </div>
                                             <div
                                                 class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200 dark:border-gray-700 dark:divide-gray-700">
                                                 <a class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-es-xl bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                                                    href="#">
-                                                    View sample
+                                                    href="{{ route('projects.dashboard.index', [
+                                                        'project' => 1,
+                                                    ]) }}">
+                                                    View Project
                                                 </a>
                                                 <a class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-ee-xl bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                                                     href="#">
-                                                    View API
+                                                    Edit project
                                                 </a>
                                             </div>
                                         </div>
+
                                         <!-- End Card -->
 
                                         <!-- Card -->
@@ -163,27 +159,28 @@
                                                 </svg>
                                             </div>
                                             <div class="p-4 md:p-6">
-                                                <span
-                                                    class="block mb-1 text-xs font-semibold uppercase text-amber-500">
-                                                    Slack API
-                                                </span>
-                                                <h3
-                                                    class="text-xl font-semibold text-gray-800 dark:text-gray-300 dark:hover:text-white">
-                                                    Slack
-                                                </h3>
+                                                <div class="flex items-center justify-between">
+                                                    <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-300 dark:hover:text-white "
+                                                        Project name </h3>
+                                                        <p class="text-sm text-gray-600 tracking-tight">
+                                                            Deadline date
+                                                        </p>
+                                                </div>
                                                 <p class="mt-3 text-gray-500">
-                                                    Email collaboration and email service desk made easy.
+                                                    Project description
                                                 </p>
                                             </div>
                                             <div
                                                 class="mt-auto flex border-t border-gray-200 divide-x divide-gray-200 dark:border-gray-700 dark:divide-gray-700">
                                                 <a class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-es-xl bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                                                    href="#">
-                                                    View sample
+                                                    href="{{ route('projects.dashboard.index', [
+                                                        'project' => 1,
+                                                    ]) }}">
+                                                    View Project
                                                 </a>
                                                 <a class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-ee-xl bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                                                     href="#">
-                                                    View API
+                                                    Edit project
                                                 </a>
                                             </div>
                                         </div>

@@ -14,15 +14,12 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->string('id')->primary();
             $table->string('name');
-            $table->string('url');
-            $table->string('profile_image')->nullable();
             $table->string('banner_image')->nullable();
             $table->date('deadline')->nullable();
             $table->enum('type', ['design', 'marketing', 'development', 'testing', 'done']);
             $table->enum('status', ['done', 'in_progress', 'todo']);
             $table->text('description');
             $table->timestamps();
-
             $table->foreignId('user_id');
             $table->foreign('user_id')->references('id')->on('users');
         });

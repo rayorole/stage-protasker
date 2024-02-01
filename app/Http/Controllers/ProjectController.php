@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
+use App\Models\Project;
+
 
 
 class ProjectController extends Controller
@@ -17,21 +19,25 @@ class ProjectController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'deadline' => 'required|string|max:255', // 'date_format:Y-m-d
             'description' => 'required|string|max:255',
             'type' => 'required|string|max:255',
             'status' => 'required|string|max:255',
-            'url' => 'required|string|max:255',
+            
         ]);
 
+        $id = Str::uuid();
 
-        // $project = Auth::user()->projects()->create([
-        //     'name' => $validated['name'],
-        //     'description' => $validated['description'],
-        //     'type' => $validated['type'],
-        //     'status' => $validated['status'],
-        //     'url' => $validated['url'],
-        //     'id' => Str::uuid(),
-        // ]);
+        $project = Project::create([
+            'id' => $id,
+            'name' => $validated['name'],
+            'deadline' => $validated['deadline'],
+            'description' => $validated['description'],
+            'type' => $validated['type'],
+            'status' => $validated['status'],
+            'user_id' => Auth::id(),
+        ]);
+
     }
 
     public function index(Request $request): View
@@ -43,6 +49,9 @@ class ProjectController extends Controller
     {
         return view('projects.create');
     }
+
+
+  
 
     public function showDashboard(Request $request, $project): View
     {
