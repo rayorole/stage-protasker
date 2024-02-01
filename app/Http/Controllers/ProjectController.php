@@ -14,7 +14,7 @@ class ProjectController extends Controller{
     public function index(Request $request): View
     {
         return view('projects.index', [
-            'user' => $request->user(),
+            
         ]);
     }
 
