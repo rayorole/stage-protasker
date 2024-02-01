@@ -12,15 +12,19 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('projects', function (Blueprint $table) {
-            $table->id();
+            $table->string('id')->primary();
             $table->string('name');
-            $table->string('profile_image');
-            $table->string('banner');
-            $table->date('deadline');
+            $table->string('url');
+            $table->string('profile_image')->nullable();
+            $table->string('banner_image')->nullable();
+            $table->date('deadline')->nullable();
             $table->enum('type', ['design', 'marketing', 'development', 'testing', 'done']);
             $table->enum('status', ['done', 'in_progress', 'todo']);
             $table->text('description');
             $table->timestamps();
+
+            $table->foreignId('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
         });
 
         Schema::create('tasks', function (Blueprint $table) {

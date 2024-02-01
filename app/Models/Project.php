@@ -10,5 +10,10 @@ class Project extends Model
     use HasFactory;
 
     protected $table = 'projects';
-    
+
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
