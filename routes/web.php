@@ -39,6 +39,11 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/projects/{project}', [ProjectController::class, 'showDashboard'])->name('projects.dashboard.index');
     Route::get('/projects/{project}/settings', [ProjectController::class, 'showSettings'])->name('projects.dashboard.settings');
+    Route::get('/projects/{project}/kanban', [ProjectController::class, 'showKanban'])->name('projects.dashboard.kanban');
+    Route::get('/projects/{project}/project-members', [ProjectController::class, 'showProjectMembers'])->name('projects.dashboard.project-members');
+    Route::get('/projects/{project}/add-member', [ProjectController::class, 'addMember'])->name('projects.dashboard.add-member');
+    Route::get('/projects/{project}/all-tasks', [ProjectController::class, 'allTasks'])->name('projects.dashboard.all-tasks');
+    Route::get('/projects/{project}/add-task', [ProjectController::class, 'addTask'])->name('projects.dashboard.add-task');
 });
 
 

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->string('id')->primary();
             $table->string('name');
-            $table->string('banner_image')->nullable();
+            $table->text('banner_image')->nullable();
             $table->date('deadline')->nullable();
             $table->enum('type', ['design', 'marketing', 'development', 'testing', 'done']);
             $table->enum('status', ['done', 'in_progress', 'todo']);

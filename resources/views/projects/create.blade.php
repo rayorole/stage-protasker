@@ -7,7 +7,7 @@
 
     <!-- Card Section -->
     <div class="max-w-4xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-        <form method="POST" accept="{{ route('projects.store') }}">
+        <form method="POST" accept="{{ route('projects.store') }}" enctype="multipart/form-data">
             @csrf
             <!-- Card -->
             <div class="bg-white rounded-xl shadow dark:bg-slate-900">

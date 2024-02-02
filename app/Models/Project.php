@@ -19,6 +19,7 @@ class Project extends Model
         'type',
         'status',
         'user_id',
+        'banner_image',
     ];
 
 

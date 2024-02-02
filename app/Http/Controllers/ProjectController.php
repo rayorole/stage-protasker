@@ -23,8 +23,15 @@ class ProjectController extends Controller
             'description' => 'required|string|max:255',
             'type' => 'required|string|max:255',
             'status' => 'required|string|max:255',
-
         ]);
+
+        $newFileName = Str::uuid() . '.' . $request->file('banner')->extension();
+
+        // If there is a file with the name banner, then upload it
+        if ($request->hasFile('banner')) {
+            // Store it in storage/app/public and get the path
+            $path = $request->file('banner')->storeAs('public', $newFileName);
+        }
 
         $id = Str::uuid();
 
@@ -36,6 +43,7 @@ class ProjectController extends Controller
             'type' => $validated['type'],
             'status' => $validated['status'],
             'user_id' => Auth::id(),
+            'banner_image' => $newFileName,
         ]);
 
         if ($project) {
@@ -67,5 +75,10 @@ class ProjectController extends Controller
     public function showSettings(Request $request, $project): View
     {
         return view('projects.dashboard.settings', []);
+    }
+
+    public function showKanban(Request $request, $project): View
+    {
+        return view('projects.dashboard.kanban', []);
     }
 }
