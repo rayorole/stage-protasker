@@ -81,4 +81,26 @@ class ProjectController extends Controller
     {
         return view('projects.dashboard.kanban', []);
     }
+
+    public function showProjectMembers(Request $request, $project): View
+    {
+        return view('projects.dashboard.project-members', []);
+    }
+
+    public function addMember(Request $request, $project): View
+    {
+        return view('projects.dashboard.add-member', []);
+    }
+
+    public function allTasks(Request $request, $project): View
+    {
+        return view('projects.dashboard.all-tasks', []);
+    }
+
+    public function addTask(Request $request, $project): View
+    {
+        return view('projects.dashboard.add-task', []);
+    }
+
+    
 }

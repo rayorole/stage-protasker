@@ -220,13 +220,17 @@
                         <ul class="pt-2 ps-2">
                             <li>
                                 <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-700 rounded-lg hover:bg-gray-100 dark:bg-gray-800 dark:text-slate-400 dark:hover:text-slate-300 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                                    href="#">
+                                    href="{{ route('projects.dashboard.project-members', [
+                                        'project' => 1,
+                                    ]) }}">
                                     Project members
                                 </a>
                             </li>
                             <li>
                                 <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-700 rounded-lg hover:bg-gray-100 dark:bg-gray-800 dark:text-slate-400 dark:hover:text-slate-300 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                                    href="#">
+                                    href="{{ route('projects.dashboard.add-member', [
+                                        'project' => 1,
+                                    ]) }}">
                                     Add member
                                 </a>
                             </li>
@@ -269,13 +273,17 @@
                         <ul class="pt-2 ps-2">
                             <li>
                                 <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-700 rounded-lg hover:bg-gray-100 dark:bg-gray-800 dark:text-slate-400 dark:hover:text-slate-300 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                                    href="#">
+                                    href="{{ route('projects.dashboard.add-task', [
+                                        'project' => 1,
+                                    ]) }}">
                                     Add task
                                 </a>
                             </li>
                             <li>
                                 <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-700 rounded-lg hover:bg-gray-100 dark:bg-gray-800 dark:text-slate-400 dark:hover:text-slate-300 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                                    href="#">
+                                    href="{{ route('projects.dashboard.all-tasks', [
+                                        'project' => 1,
+                                    ]) }}">
                                     All tasks
                                 </a>
                             </li>
