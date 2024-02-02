@@ -158,7 +158,7 @@
             <x-application-logo />
         </div>
 
-        <div class="border-t w-full my-4"></div>
+        <div class="border-t w-full my-[22px]"></div>
 
         <div class="px-6">
             <a class="flex-none space-x-2 text-sm flex items-center  font-semibold text-gray-700 py-2 px-3 hover:bg-gray-100 hover:border-gray-200 border transition duration-150 border-transparent rounded "
@@ -325,6 +325,7 @@
     </div>
     <!-- End Sidebar -->
 
+
     <!-- Content -->
     <div class="w-full pt-10 px-4 sm:px-6 md:px-8 lg:ps-72">
         <!-- Page Heading -->
@@ -335,6 +336,8 @@
     </div>
     <!-- End Content -->
     <!-- ========== END MAIN CONTENT ========== -->
+
+
 </body>
 
 </html>
