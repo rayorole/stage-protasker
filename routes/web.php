@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\TaskController;
+use App\Models\Task;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,21 +41,19 @@ Route::middleware('auth')->group(function () {
     Route::post('/projects/create', [ProjectController::class, 'store'])->name('projects.store');
 
     Route::get('/projects/{project}', [ProjectController::class, 'showDashboard'])->name('projects.dashboard.index');
-    
+
     Route::get('/projects/{project}/settings', [ProjectController::class, 'showSettings'])->name('projects.dashboard.settings');
-    
+
     Route::get('/projects/{project}/project-members', [ProjectController::class, 'showProjectMembers'])->name('projects.dashboard.project-members');
-    
+
     Route::get('/projects/{project}/add-member', [ProjectController::class, 'addMember'])->name('projects.dashboard.add-member');
     Route::post('/projects/{project}/add-member', [MemberController::class, 'store'])->name('projects.dashboard.add-member');
     // Route::post('/projects/{project}/add-member', [MemberController::class, 'store'])->name('projects.dashboard.add-member');
     //
 
-    
-    Route::get('/projects/{project}/all-tasks', [ProjectController::class, 'allTasks'])->name('projects.dashboard.all-tasks');
-    Route::get('/projects/{project}/add-task', [ProjectController::class, 'addTask'])->name('projects.dashboard.add-task');
 
-    
+    Route::get('/projects/{project}/all-tasks', [ProjectController::class, 'allTasks'])->name('projects.dashboard.all-tasks');
+    Route::get('/projects/{project}/add-task', [TaskController::class, 'create'])->name('projects.dashboard.add-task');
 });
 
 
