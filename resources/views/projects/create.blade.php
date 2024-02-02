@@ -130,8 +130,7 @@
 
                             <textarea id="af-submit-app-description" name="description" required
                                 class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-amber-500 focus:ring-amber-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
-                                rows="6"
-                                placeholder="A detailed summary will better explain your products to the audiences. Our users will see this in your dedicated product page."></textarea>
+                                rows="6" placeholder="A detailed summary will better explain your project to your team."></textarea>
 
                             @error('description')
                                 <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
