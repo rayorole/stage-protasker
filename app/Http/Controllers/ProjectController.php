@@ -91,7 +91,7 @@ class ProjectController extends Controller
 
     public function addMember(Request $request, $project): View
     {
-       
+
         return view('projects.dashboard.add-member', [
             'project' => $project
         ]);
@@ -101,11 +101,4 @@ class ProjectController extends Controller
     {
         return view('projects.dashboard.all-tasks', []);
     }
-
-    public function addTask(Request $request, $project): View
-    {
-        return view('projects.dashboard.add-task', []);
-    }
-
-    
 }
