@@ -23,7 +23,7 @@ class ProjectController extends Controller
             'description' => 'required|string|max:255',
             'type' => 'required|string|max:255',
             'status' => 'required|string|max:255',
-            
+
         ]);
 
         $id = Str::uuid();
@@ -38,11 +38,17 @@ class ProjectController extends Controller
             'user_id' => Auth::id(),
         ]);
 
+        if ($project) {
+            return Redirect::route('projects.index');
+        }
     }
 
     public function index(Request $request): View
     {
-        return view('projects.index', []);
+        $projects = Project::where('user_id', Auth::id())->get();
+        return view('projects.index', [
+            'projects' => $projects
+        ]);
     }
 
     public function create()
@@ -51,7 +57,7 @@ class ProjectController extends Controller
     }
 
 
-  
+
 
     public function showDashboard(Request $request, $project): View
     {
