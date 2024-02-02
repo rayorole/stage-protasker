@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex display-flex justify-between">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Dashboard
+                Projects
             </h2>
             <a href="{{ route('projects.create') }}"
                 class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded">
@@ -160,11 +160,13 @@
                                             </div>
                                             <div class="p-4 md:p-6">
                                                 <div class="flex items-center justify-between">
-                                                    <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-300 dark:hover:text-white "
-                                                        Project name </h3>
-                                                        <p class="text-sm text-gray-600 tracking-tight">
-                                                            Deadline date
-                                                        </p>
+                                                    <h3
+                                                        class="text-xl font-semibold text-gray-800 dark:text-gray-300 dark:hover:text-white">
+                                                        Project name
+                                                    </h3>
+                                                    <p class="text-sm text-gray-600 tracking-tight">
+                                                        Deadline date
+                                                    </p>
                                                 </div>
                                                 <p class="mt-3 text-gray-500">
                                                     Project description
