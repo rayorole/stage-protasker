@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
 use App\Models\Project;
+use App\Models\Member;
+use App\Models\Task;
 
 
 
@@ -33,10 +35,7 @@ class ProjectController extends Controller
             $path = $request->file('banner')->storeAs('public', $newFileName);
         }
 
-        $id = Str::uuid();
-
         $project = Project::create([
-            'id' => $id,
             'name' => $validated['name'],
             'deadline' => $validated['deadline'],
             'description' => $validated['description'],
@@ -84,12 +83,18 @@ class ProjectController extends Controller
 
     public function showProjectMembers(Request $request, $project): View
     {
-        return view('projects.dashboard.project-members', []);
+        $members = Member::where('project_id', $project)->get();
+        return view('projects.dashboard.project-members', [
+            'members' => $members
+        ]);
     }
 
     public function addMember(Request $request, $project): View
     {
-        return view('projects.dashboard.add-member', []);
+       
+        return view('projects.dashboard.add-member', [
+            'project' => $project
+        ]);
     }
 
     public function allTasks(Request $request, $project): View

@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('projects', function (Blueprint $table) {
-            $table->string('id')->primary();
+            $table->id();
             $table->string('name');
             $table->text('banner_image')->nullable();
             $table->date('deadline')->nullable();
@@ -20,6 +20,7 @@ return new class extends Migration
             $table->enum('status', ['done', 'in_progress', 'todo']);
             $table->text('description');
             $table->timestamps();
+
             $table->foreignId('user_id');
             $table->foreign('user_id')->references('id')->on('users');
         });
@@ -28,7 +29,11 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->date('deadline');
+            $table->text('description');
             $table->timestamps();
+
+            $table->foreignId('project_id');
+            $table->foreign('project_id')->references('id')->on('projects');
         });
 
         Schema::create('comments', function (Blueprint $table) {
@@ -41,6 +46,20 @@ return new class extends Migration
             $table->foreign('task_id')->references('id')->on('tasks');
             $table->foreign('user_id')->references('id')->on('users');
         });
+
+        
+        Schema::create('project_members', function (Blueprint $table) {
+            $table->id();
+            $table->string('role');
+            $table->string('function');
+            $table->foreignId('project_id');
+            $table->foreignId('user_id');
+
+            $table->timestamps();
+            $table->foreign('project_id')->references('id')->on('projects');
+            $table->foreign('user_id')->references('id')->on('users');
+        });
+
     }
 
     /**
@@ -51,5 +70,6 @@ return new class extends Migration
         Schema::dropIfExists('projects');
         Schema::dropIfExists('tasks');
         Schema::dropIfExists('comments');
+        Schema::dropIfExists('project_member');
     }
 };
