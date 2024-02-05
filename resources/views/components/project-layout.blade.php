@@ -1,3 +1,7 @@
+@php
+    // The path is /projects/{project}/page, so we need to get the project from the URL
+    $project = request()->route('project');
+@endphp
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -180,7 +184,7 @@
                 <li>
                     <a class="flex items-center gap-x-3.5 py-2 px-2.5 bg-gray-100 text-sm text-slate-700 rounded-lg hover:bg-gray-100 dark:bg-gray-900 dark:text-white dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                         href="{{ route('projects.dashboard.index', [
-                            'project' => 1,
+                            'project' => $project,
                         ]) }}">
                         <svg class="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24"
                             height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -223,7 +227,7 @@
                             <li>
                                 <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-700 rounded-lg hover:bg-gray-100 dark:bg-gray-800 dark:text-slate-400 dark:hover:text-slate-300 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                                     href="{{ route('projects.dashboard.project-members', [
-                                        'project' => 1,
+                                        'project' => $project,
                                     ]) }}">
                                     Project members
                                 </a>
@@ -231,7 +235,7 @@
                             <li>
                                 <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-700 rounded-lg hover:bg-gray-100 dark:bg-gray-800 dark:text-slate-400 dark:hover:text-slate-300 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                                     href="{{ route('projects.dashboard.add-member', [
-                                        'project' => 1,
+                                        'project' => $project,
                                     ]) }}">
                                     Add member
                                 </a>
@@ -276,7 +280,7 @@
                             <li>
                                 <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-700 rounded-lg hover:bg-gray-100 dark:bg-gray-800 dark:text-slate-400 dark:hover:text-slate-300 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                                     href="{{ route('projects.dashboard.add-task', [
-                                        'project' => 1,
+                                        'project' => $project,
                                     ]) }}">
                                     Add task
                                 </a>
@@ -284,7 +288,7 @@
                             <li>
                                 <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-700 rounded-lg hover:bg-gray-100 dark:bg-gray-800 dark:text-slate-400 dark:hover:text-slate-300 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                                     href="{{ route('projects.dashboard.all-tasks', [
-                                        'project' => 1,
+                                        'project' => $project,
                                     ]) }}">
                                     All tasks
                                 </a>
@@ -298,7 +302,7 @@
                 <li>
                     <a class="w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-900 dark:text-slate-400 dark:hover:text-slate-300 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                         href="{{ route('projects.dashboard.settings', [
-                            'project' => 1,
+                            'project' => $project,
                         ]) }}">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
