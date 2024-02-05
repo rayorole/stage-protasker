@@ -46,8 +46,8 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreignId('project_id');
-            $table->foreign('project_id')->references('id')->on('projects');
-            $table->foreign('assigned_to')->references('id')->on('project_members');
+            $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
+            $table->foreign('assigned_to')->references('id')->on('project_members')->onDelete('cascade');
         });
 
         Schema::create('comments', function (Blueprint $table) {

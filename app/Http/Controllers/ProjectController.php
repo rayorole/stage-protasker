@@ -93,7 +93,8 @@ class ProjectController extends Controller
     {
         $members = Member::where('project_id', $project)->get();
         return view('projects.dashboard.project-members', [
-            'members' => $members
+            'members' => $members,
+            'project' => $project
         ]);
     }
 

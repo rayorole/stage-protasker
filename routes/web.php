@@ -49,6 +49,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/projects/{project}/add-member', [ProjectController::class, 'addMember'])->name('projects.dashboard.add-member');
     Route::post('/projects/{project}/add-member', [MemberController::class, 'store'])->name('projects.dashboard.add-member');
+    Route::get('/projects/{project}/delete-member/{member}', [MemberController::class, 'destroy'])->name('projects.dashboard.delete-member');
+    Route::get('/projects/{project}/edit-member/{member}', [MemberController::class, 'edit'])->name('projects.dashboard.edit-member');
+    Route::put('/projects/{project}/edit-member/{member}', [MemberController::class, 'update'])->name('projects.dashboard.update-member');
     
     //routes for tasks
     

@@ -42,7 +42,7 @@ class MemberController extends Controller
         ]);
 
         if ($member) {
-            return Redirect::route('projects.dashboard.project-members');
+            return Redirect::route('projects.index');
         }
     }
 
@@ -70,6 +70,35 @@ class MemberController extends Controller
             'tasks' => $tasks,
             'comments' => $comments,
             'members' => $members
+        ]);
+    }
+
+    public function edit($id, $member_id)
+    {
+        $member = Member::find($member_id);
+        return view('projects.dashboard.edit-member', [
+            'member' => $member,
+            'project' => $id
+        ]);
+    }
+
+    public function update(Request $request, $id, $member): RedirectResponse
+    {
+        $member = Member::find($member);
+        $member->role = $request->role;
+        $member->function = $request->function;
+        $member->save();
+        return Redirect::route('projects.dashboard.project-members', [
+            'project' => $id
+        ]);
+    }
+
+    public function destroy($id, $member): RedirectResponse
+    {
+        $member = Member::find($member);
+        $member->delete();
+        return Redirect::route('projects.dashboard.project-members', [
+            'project' => $id
         ]);
     }
 }
