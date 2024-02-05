@@ -64,21 +64,25 @@ class ProjectController extends Controller
     }
 
 
-
-
     public function showDashboard(Request $request, $project): View
     {
-        return view('projects.dashboard.index', []);
+        return view('projects.dashboard.index', [
+            'project' => $project
+        ]);
     }
 
     public function showSettings(Request $request, $project): View
     {
-        return view('projects.dashboard.settings', []);
+        return view('projects.dashboard.settings', [
+            'project' => $project
+        ]);
     }
 
     public function showKanban(Request $request, $project): View
     {
-        return view('projects.dashboard.kanban', []);
+        return view('projects.dashboard.kanban', [
+            'project' => $project
+        ]);
     }
 
     public function showProjectMembers(Request $request, $project): View
@@ -99,6 +103,8 @@ class ProjectController extends Controller
 
     public function allTasks(Request $request, $project): View
     {
-        return view('projects.dashboard.all-tasks', []);
+        return view('projects.dashboard.all-tasks', [
+            'project' => $project
+        ]);
     }
 }

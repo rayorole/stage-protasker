@@ -54,7 +54,9 @@
                                                         View Project
                                                     </a>
                                                     <a class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-ee-xl bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                                                        href="#">
+                                                        href="{{ route('projects.dashboard.settings', [
+                                                            'project' => $project->id,
+                                                        ]) }}">
                                                         Edit project
                                                     </a>
                                                 </div>
