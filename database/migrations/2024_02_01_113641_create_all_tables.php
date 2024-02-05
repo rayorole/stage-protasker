@@ -25,15 +25,29 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
         });
 
+        Schema::create('project_members', function (Blueprint $table) {
+            $table->id();
+            $table->string('role');
+            $table->string('function');
+            $table->foreignId('project_id');
+            $table->foreignId('user_id');
+
+            $table->timestamps();
+            $table->foreign('project_id')->references('id')->on('projects');
+            $table->foreign('user_id')->references('id')->on('users');
+        });
+
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->date('deadline');
             $table->text('description');
+            $table->foreignId('assigned_to')->nullable();
             $table->timestamps();
 
             $table->foreignId('project_id');
             $table->foreign('project_id')->references('id')->on('projects');
+            $table->foreign('assigned_to')->references('id')->on('project_members');
         });
 
         Schema::create('comments', function (Blueprint $table) {
@@ -48,17 +62,7 @@ return new class extends Migration
         });
 
         
-        Schema::create('project_members', function (Blueprint $table) {
-            $table->id();
-            $table->string('role');
-            $table->string('function');
-            $table->foreignId('project_id');
-            $table->foreignId('user_id');
-
-            $table->timestamps();
-            $table->foreign('project_id')->references('id')->on('projects');
-            $table->foreign('user_id')->references('id')->on('users');
-        });
+       
 
     }
 

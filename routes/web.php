@@ -48,12 +48,15 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/projects/{project}/add-member', [ProjectController::class, 'addMember'])->name('projects.dashboard.add-member');
     Route::post('/projects/{project}/add-member', [MemberController::class, 'store'])->name('projects.dashboard.add-member');
-    // Route::post('/projects/{project}/add-member', [MemberController::class, 'store'])->name('projects.dashboard.add-member');
-    //
+    
+    //routes for tasks
+    
+
 
 
     Route::get('/projects/{project}/all-tasks', [ProjectController::class, 'allTasks'])->name('projects.dashboard.all-tasks');
     Route::get('/projects/{project}/add-task', [TaskController::class, 'create'])->name('projects.dashboard.add-task');
+    Route::post('/projects/{project}/add-task', [TaskController::class, 'store'])->name('projects.tasks.store');
 });
 
 
