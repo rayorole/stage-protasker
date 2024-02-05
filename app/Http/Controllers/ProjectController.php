@@ -73,8 +73,10 @@ class ProjectController extends Controller
 
     public function showSettings(Request $request, $project): View
     {
+        $projectData = Project::where('id', $project)->first();
         return view('projects.dashboard.settings', [
-            'project' => $project
+            'id' => $project,
+            'project' => $projectData
         ]);
     }
 
@@ -106,5 +108,39 @@ class ProjectController extends Controller
         return view('projects.dashboard.all-tasks', [
             'project' => $project
         ]);
+    }
+
+    public function update(Request $request)
+    {
+        $validated = $request->validate([
+            'id' => 'required|integer',
+            'name' => 'required|string|max:255',
+            'deadline' => 'required|string|max:255', // 'date_format:Y-m-d
+            'description' => 'required|string|max:255',
+            'type' => 'required|string|max:255',
+            'status' => 'required|string|max:255',
+        ]);
+
+
+
+        // If there is a file with the name banner, then upload it
+        if ($request->hasFile('banner')) {
+            // Store it in storage/app/public and get the path
+            $newFileName = Str::uuid() . '.' . $request->file('banner')->extension();
+            $path = $request->file('banner')->storeAs('public', $newFileName);
+        }
+
+        Project::where('id', $validated['id'])->update([
+            'name' => $validated['name'],
+            'deadline' => $validated['deadline'],
+            'description' => $validated['description'],
+            'type' => $validated['type'],
+            'status' => $validated['status'],
+            'user_id' => Auth::id(),
+            'banner_image' => $newFileName ?? null,
+        ]);
+
+
+        return Redirect::route('projects.dashboard.settings', ['project' => $validated['id']]);
     }
 }

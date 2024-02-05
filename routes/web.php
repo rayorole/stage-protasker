@@ -43,6 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/projects/{project}', [ProjectController::class, 'showDashboard'])->name('projects.dashboard.index');
 
     Route::get('/projects/{project}/settings', [ProjectController::class, 'showSettings'])->name('projects.dashboard.settings');
+    Route::put('/projects/{project}/settings', [ProjectController::class, 'update'])->name('projects.dashboard.update.settings');
 
     Route::get('/projects/{project}/project-members', [ProjectController::class, 'showProjectMembers'])->name('projects.dashboard.project-members');
 
