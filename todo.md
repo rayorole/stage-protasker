@@ -1,2 +1,1 @@
--   All tasks page
 -   View task page (with edit and delete buttons and comments)

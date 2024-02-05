@@ -56,6 +56,9 @@
 
                             <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
                                 @foreach ($tasks as $task)
+                                    @php
+                                        $user = App\Models\User::where('id', $task->assignedTo->user_id)->first();
+                                    @endphp
                                     <tr class="bg-white hover:bg-gray-50 dark:bg-slate-900 dark:hover:bg-slate-800">
 
                                         <td class="h-px w-px whitespace-nowrap align-top">
@@ -65,9 +68,11 @@
                                                     <div class="grow">
                                                         <span
                                                             class="block text-sm font-semibold text-gray-800 dark:text-gray-200">
-                                                            {{ $task->assigned_to }}</span>
-                                                        <span
-                                                            class="block text-sm text-gray-500">christina@site.com</span>
+                                                            {{ $user->name }}
+                                                        </span>
+                                                        <span class="block text-sm text-gray-500">
+                                                            {{ $user->email }}
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </a>

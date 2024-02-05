@@ -66,8 +66,10 @@ class ProjectController extends Controller
 
     public function showDashboard(Request $request, $project): View
     {
+        $assigned_tasks = Task::where('project_id', $project)->where('assigned_to', Auth::id())->get();
         return view('projects.dashboard.index', [
-            'project' => $project
+            'project' => $project,
+            'assigned_tasks' => $assigned_tasks
         ]);
     }
 
@@ -103,7 +105,7 @@ class ProjectController extends Controller
         ]);
     }
 
-   
+
 
     public function update(Request $request)
     {
