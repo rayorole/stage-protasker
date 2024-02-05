@@ -8,18 +8,17 @@
 
     <!-- Card Section -->
     <div class="max-w-4xl px-4 py-10 sm:px-6 lg:px-8 mx-auto">
-        <form method="POST" accept="{{ route('projects.store') }}" enctype="multipart/form-data">
+        <form method="POST" accept="{{ route('projects.dashboard.update.settings', ['project' => $project->id]) }}"
+            enctype="multipart/form-data">
             @csrf
+            @method('PUT')
+            <input type="hidden" name="id" value="{{ $project->id }}">
             <!-- Card -->
             <div class="bg-white rounded-xl shadow dark:bg-slate-900">
                 <div id="output"
                     class="relative h-40 bg-[url('https://preline.co/assets/svg/examples/abstract-bg-1.svg')] bg-no-repeat bg-cover bg-center">
                     <div class="absolute top-0 end-0 p-4">
-
-
                         <img id="output" />
-
-
                         <label class="block">
                             <span class="sr-only">Choose profile photo</span>
                             <input type="file" onchange="loadFile(event)" accept="image/*" name="banner"
@@ -31,18 +30,6 @@
                                   hover:file:bg-gray-100
                                   file:disabled:opacity-50 file:disabled:pointer-events-none">
                         </label>
-
-                        {{-- <input type="file"
-                                class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium  border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
-                            <svg class="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24"
-                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                                <polyline points="17 8 12 3 7 8" />
-                                <line x1="12" x2="12" y1="3" y2="15" />
-                            </svg>
-                            Upload banner
-                            </input> --}}
                     </div>
                 </div>
 
@@ -58,6 +45,7 @@
                             </label>
 
                             <input id="af-submit-app-project-name" type="text" required name="name"
+                                value="{{ $project->name }}"
                                 class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-amber-500 focus:ring-amber-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
                                 placeholder="Enter project name">
 
@@ -73,13 +61,8 @@
                             </label>
                             <input
                                 class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-amber-500 focus:ring-amber-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
-                                type="date" name="deadline" id="deadline">
+                                value="{{ $project->deadline }}" type="date" name="deadline" id="deadline">
                         </div>
-
-
-
-
-
                         <div class="grid grid-cols-1 gap-4 w-full md:grid-cols-2">
                             <div class="space-y-2">
                                 <label for="af-submit-app-category"
@@ -89,12 +72,23 @@
 
                                 <select id="af-submit-app-category" name="type" required
                                     class="py-2 px-3 pe-9 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-amber-500 focus:ring-amber-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
-                                    <option selected>Select a category</option>
-                                    <option value="design">Design</option>
-                                    <option value="marketing">Marketing</option>
-                                    <option value="development">Development</option>
-                                    <option value="testing">Testing</option>
-                                    <option value="done">Done</option>
+                                    <option>Select a category</option>
+                                    <option value="design" {{ $project->type == 'design' ? 'selected' : '' }}>
+                                        Design
+                                    </option>
+
+                                    <option value="marketing" {{ $project->type == 'marketing' ? 'selected' : '' }}>
+                                        Marketing
+                                    </option>
+                                    <option value="development" {{ $project->type == 'development' ? 'selected' : '' }}>
+                                        Development
+                                    </option>
+                                    <option value="testing" {{ $project->type == 'testing' ? 'selected' : '' }}>
+                                        Testing
+                                    </option>
+                                    <option value="done" {{ $project->type == 'done' ? 'selected' : '' }}>
+                                        Done
+                                    </option>
                                 </select>
 
                                 @error('type')
@@ -111,9 +105,12 @@
                                 <select id="af-submit-app-category" name="status" required
                                     class="py-2 px-3 pe-9 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-amber-500 focus:ring-amber-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
                                     <option selected>Select a status</option>
-                                    <option value="done">Done</option>
-                                    <option value="in_progress">In progress</option>
-                                    <option value="todo">Todo</option>
+                                    <option value="done" {{ $project->status == 'done' ? 'selected' : '' }}>Done
+                                    </option>
+                                    <option value="in_progress"
+                                        {{ $project->status == 'in_progress' ? 'selected' : '' }}>In progress</option>
+                                    <option value="todo" {{ $project->status == 'todo' ? 'selected' : '' }}>Todo
+                                    </option>
                                 </select>
 
                                 @error('status')
@@ -131,7 +128,7 @@
 
                             <textarea id="af-submit-app-description" name="description" required
                                 class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-amber-500 focus:ring-amber-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
-                                rows="6" placeholder="A detailed summary will better explain your project to your team."></textarea>
+                                rows="6" placeholder="A detailed summary will better explain your project to your team.">{{ $project->description }}</textarea>
 
                             @error('description')
                                 <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
@@ -144,7 +141,7 @@
                     <div class="mt-5 flex justify-center gap-x-2">
                         <button type="submit"
                             class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-amber-600 text-white hover:bg-amber-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
-                            Create your project
+                            Update project
                         </button>
                     </div>
                 </div>
