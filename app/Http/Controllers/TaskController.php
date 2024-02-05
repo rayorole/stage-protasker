@@ -35,7 +35,9 @@ class TaskController extends Controller
         $members = Member::where('project_id', $project)->get();
         return view('projects.dashboard.edit-task', [
             'task' => $task,
-            'members' => $members
+            'members' => $members,
+            'project' => $project
+
         ]);
     }
 
@@ -58,5 +60,31 @@ class TaskController extends Controller
         return redirect()->route('projects.dashboard.all-tasks', ['project' => $project]);
     }
 
+    public function update(Request $request, $project, $task)
+    {
+        $validated = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'deadline' => 'required',
+            'assigned_to' => 'required'
+        ]);
+
+        $task = Task::find($task);
+        $task->name = $request->name;
+        $task->description = $request->description;
+        $task->assigned_to = $request->assigned_to;
+        $task->deadline = $request->deadline;
+        $task->project_id = $project;
+        $task->save();
+        return redirect()->route('projects.dashboard.all-tasks', ['project' => $project]);
+
+    }
+
+    public function destroy(Request $request, $project, $task)
+    {
+        $task = Task::find($task);
+        $task->delete();
+        return redirect()->route('projects.dashboard.all-tasks', ['project' => $project]);
+    }
 
 }

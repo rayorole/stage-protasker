@@ -58,6 +58,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/projects/{project}/all-tasks', [TaskController::class, 'view'])->name('projects.dashboard.all-tasks');
     Route::get('/projects/{project}/add-task', [TaskController::class, 'create'])->name('projects.dashboard.add-task');
     Route::post('/projects/{project}/add-task', [TaskController::class, 'store'])->name('projects.tasks.store');
+    Route::get('/projects/{project}/edit-task/{task}', [TaskController::class, 'edit'])->name('projects.dashboard.edit-task');
+    Route::put('/projects/{project}/edit-task/{task}', [TaskController::class, 'update'])->name('projects.tasks.update');
+    Route::get('/projects/{project}/delete-task/{task}', [TaskController::class, 'destroy'])->name('projects.tasks.destroy');
 });
 
 

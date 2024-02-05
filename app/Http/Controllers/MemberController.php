@@ -42,7 +42,7 @@ class MemberController extends Controller
         ]);
 
         if ($member) {
-            return Redirect::route('projects.index');
+            return Redirect::route('projects.dashboard.project-members');
         }
     }
 

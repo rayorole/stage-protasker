@@ -12,8 +12,10 @@
                 </p>
             </div>
 
-            <form class="space-y-5" action="{{ route('projects.tasks.store', $project) }}" method="POST"
+            <form class="space-y-5"
+                action="{{ route('projects.tasks.update', ['project' => $project, 'task' => $task->id]) }}" method="POST"
                 enctype="multipart/form-data">
+                @method('PUT')
                 @csrf
                 <!-- Grid -->
                 <div class="grid sm:grid-cols-12 gap-2 sm:gap-6">
@@ -33,7 +35,7 @@
                     <!-- End Col -->
                     <div class="sm:col-span-9">
                         <div class="sm:flex">
-                            <input id="name" type="text" name="name"
+                            <input id="name" type="text" name="name" value="{{ $task->name }}"
                                 class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-amber-500 focus:ring-amber-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
                                 placeholder="Task name" />
                         </div>
@@ -49,7 +51,7 @@
                     <!-- End Col -->
 
                     <div class="sm:col-span-9">
-                        <input name="deadline" id="deadline"
+                        <input name="deadline" id="deadline" value="{{ $task->deadline }}"
                             class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-amber-500 focus:ring-amber-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
                             type="date" name="deadline" id="deadline">
                     </div>
@@ -69,7 +71,8 @@
                             class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-amber-500 focus:ring-amber-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
                             <option value="" disabled selected>Select a member</option>
                             @foreach ($members as $member)
-                                <option value={{ $member->id }}>
+                                <option value="{{ $member->id }}"
+                                    {{ $task->assigned_to == $member->id ? 'selected' : '' }}>
                                     {{ $member->user->name }}</option>
                             @endforeach
                         </select>
@@ -86,16 +89,15 @@
                     <div class="sm:col-span-9">
                         <textarea id="af-account-bio"
                             class="py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-amber-500 focus:ring-amber-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
-                            rows="6" name="description" placeholder="Type your message..."></textarea>
+                            rows="4" name="description" placeholder="Type your message...">{{ $task->description }}</textarea>
                     </div>
                     <!-- End Col -->
                 </div>
                 <!-- End Grid -->
-
                 <div class="mt-5 flex justify-end gap-x-2">
                     <button type="submit"
                         class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-amber-600 text-white hover:bg-amber-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
-                        Add task
+                        Edit task
                     </button>
                 </div>
             </form>
