@@ -65,7 +65,7 @@
                                                     <div class="grow">
                                                         <span
                                                             class="block text-sm font-semibold text-gray-800 dark:text-gray-200">Christina
-                                                            {{ $task->assigned_to }}</span>
+                                                            {{ $task->assignedTo->user }}</span>
                                                         <span
                                                             class="block text-sm text-gray-500">christina@site.com</span>
                                                     </div>

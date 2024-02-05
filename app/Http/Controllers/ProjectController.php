@@ -103,12 +103,7 @@ class ProjectController extends Controller
         ]);
     }
 
-    public function allTasks(Request $request, $project): View
-    {
-        return view('projects.dashboard.all-tasks', [
-            'project' => $project
-        ]);
-    }
+   
 
     public function update(Request $request)
     {

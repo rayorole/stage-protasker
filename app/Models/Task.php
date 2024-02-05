@@ -17,4 +17,14 @@ class Task extends Model
         'deadline',
         'description',
     ];
+
+    public function project()
+    {
+        return $this->belongsTo(Project::class);
+    }
+
+    public function assignedTo()
+    {
+        return $this->belongsTo(Member::class, 'assigned_to');
+    }
 }

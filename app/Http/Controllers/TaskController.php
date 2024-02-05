@@ -11,18 +11,21 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    public function view(Request $request)
-    {
-        die('view');
-    }
-
-
     public function create(Request $request, $project)
     {
         $members = Member::where('project_id', $project)->get();
         return view('projects.dashboard.add-task', [
             'members' => $members,
             'project' => $project
+        ]);
+    }
+
+    public function view(Request $request, $project)
+    {
+        $tasks = Task::where('project_id', $project)->get();
+        return view('projects.dashboard.all-tasks', [
+            'project' => $project,
+            'tasks' => $tasks
         ]);
     }
 

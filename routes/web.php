@@ -55,7 +55,7 @@ Route::middleware('auth')->group(function () {
 
 
 
-    Route::get('/projects/{project}/all-tasks', [ProjectController::class, 'allTasks'])->name('projects.dashboard.all-tasks');
+    Route::get('/projects/{project}/all-tasks', [TaskController::class, 'view'])->name('projects.dashboard.all-tasks');
     Route::get('/projects/{project}/add-task', [TaskController::class, 'create'])->name('projects.dashboard.add-task');
     Route::post('/projects/{project}/add-task', [TaskController::class, 'store'])->name('projects.tasks.store');
 });
