@@ -84,12 +84,12 @@ class MemberController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id, $member): RedirectResponse
+    public function update(Request $request, Project $project, Member $member): RedirectResponse
     {
-        $member = Member::find($member);
         $member->role = $request->role;
         $member->function = $request->function;
         $member->save();
+
         return Redirect::route('projects.dashboard.project-members', [
             'project' => $id
         ]);
