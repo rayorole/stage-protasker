@@ -41,9 +41,11 @@ class MemberController extends Controller
             'user_id' => $memberFromUser->id,
         ]);
 
-        if ($member) {
-            return Redirect::route('projects.index');
+        if (! $member) {
+            return redirect()->back()->withErrors('Could not create member.');
         }
+
+        return Redirect::route('projects.dashboard.project-members', ['project' => $id]);
     }
 
 
